@@ -1,8 +1,8 @@
 # used to get user input with app.getTextInput. 
 app.numberInput = ''
-# Assign P1 input to this variable
+# Assign P1 input to this variable as an int (If valid!)
 app.number = 0
-# Assign P2 input to this variable.
+# Assign P2 input to this variable as an int (If valid!)
 app.guess = 0
 # Say hello to the Label.
 Label ("Welcome to NUMBER GUESSER!", 200,25,size = 15, fill = 'blue')
