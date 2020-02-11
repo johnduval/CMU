@@ -64,4 +64,4 @@ def calcP1hand():
 
 # Disaplts game over.
 def gameOver():
-	# is the score > 21?  Displat GAME OVER and app.stop() if so.    
+	# is the score > 21?  Displat GAME OVER and app.stop() if so.
