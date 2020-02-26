@@ -1,13 +1,17 @@
-app.values = ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
-app.suits = ['Hearts', 'Clubs', 'Diamonds', 'Spades']
-app.player1hand = []
-app.dealer1hand = []
+# Create your values list!
+app.values = ...
+# Create your Suits list!
+app.suits = ...
+# this will be your List containing your hands.
+app.player1hand = ...
+# Dealer's hand
+app.dealer1hand = ...
 
-# app.intructions = Label ("Press 'd' to draw a card, or 's' to Stand!", 200,20)
+# Change instruction for DEALER to start!
+app.intructions = ...
 
 #changing for pt3
-# app.intructions = Label ("Press anywhere where on the Canvas for dealer to draw!", 200,10)
-app.intructions = Label ("Press anywhere where on the Canvas for Player 1 to bet!", 200,10)
+# Change instruction for PLAYER TO BET!!!
 Label ("PLAYER 1", 80, 67, fill='red')
 Label ("You drew:", 75, 83, fill = 'blue')
 Label ("Your current hand:", 75,125,fill='blue')
