@@ -12,33 +12,44 @@ app.intructions = ...
 
 #changing for pt3
 # Change instruction for PLAYER TO BET!!!
-Label ("PLAYER 1", 80, 67, fill='red')
-Label ("You drew:", 75, 83, fill = 'blue')
-Label ("Your current hand:", 75,125,fill='blue')
-Label ("DEALER", 275, 67, fill='red')
-Label ("Dealer drew:", 275, 83, fill = 'blue')
-Label ("Dealer current hand:", 275,125,fill='blue')
+app.intructions = ...
+# 3 different Labels for:
+# 1) PLAYER 1
+# 2) YOU DREW
+# 3) YOUR CURRENT HAND
+# AND.... Another 3 different labels for...
+# 1) Dealer
+# 2) Dealer Drew
+# 3) Dealer Current Hand
+
 p1display = Rect (10,110,150,75,fill='yellow',opacity=50,border='black')
 app.p1cardValue =  Label ("No Card!", 50,100)
 app.p1cardSuit = Label ("No Card!", 100,100)
 app.p1handValue = Label (0, 75,150, size = 20)
 app.currentp1hand = Group (Label ("No cards!", 75,175))
 
+#Now do the same thing, only replacing all content from p1 (player 1) with that for d1 (dealer 1):
 d1display = Rect (210,110,150,75,fill='yellow',opacity=50,border='black')
-app.d1cardValue =  Label ("No Card!", 250,100)
-app.d1cardSuit = Label ("No Card!", 300,100)
-app.d1handValue = Label (0, 275,150, size = 20)
-app.currentd1hand = Group (Label ("No cards!", 275,175))
+app.d1cardValue =  ...
+app.d1cardSuit = ...
+app.d1handValue = ...
+app.currentd1hand = ...
 
+# Tells us if dealer has started
 app.d1started = False
+# Has Player 1 stood?
 app.p1stand = False
+# Has player 1 started their game yet, to draw 2 cards?
 app.p1Started = False
+
+
 # NEWs
-roundMessage = Group()
 
-app.p1betPlaced = False
+#Create an empty group called "roundMessage"
 
-app.roundOver = False
+#Set the following two booleans to False.
+app.p1betPlaced = ...
+app.roundOver = ...
 
 Label ("Player 1 current has $ ", 75,27,fill='purple')
 app.p1money = Label(100,170,27,fill='green',bold=True)
@@ -46,7 +57,7 @@ Label ("Player 1 has bet $ ", 250,27,fill='purple')
 app.p1bet = Label (0,340,27,fill='green',bold = True)
 Rect (10,38,380,20,border = 'black',fill='grey',opacity=20)
 
-
+####
 def onMousePress (mouseX, mouseY):
     # new
     if (app.p1betPlaced == False):
