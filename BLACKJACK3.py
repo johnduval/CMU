@@ -65,123 +65,98 @@ def onMousePress (mouseX, mouseY):
         if (response.isdigit() == True and int(response) > 0 and int(response) <= app.p1money.value):
             app.p1bet.value = int(response)
             app.p1betPlaced = True
-        
-    if (app.d1started == False and app.p1betPlaced == True):
-        app.d1started = True
-        drawCard_dealer()
-        drawHand_d1()
-        calcD1hand()
-        app.intructions.value = "Press 'd' to draw a card, or 's' to Stand!"
+    
+    # Check IF app.p1Started is false AND if app.p1betPlaced is True
+    	# Change app.d1started to true.
+		# Call drawCard_dealer(), drawHand_d1(), & calcD1hand()
+		# change app.intructions's value to tell Player how how to draw a card or stand.
         
 
 def onKeyPress (key):
-    # added app.rounderOver conditional.
-    if (app.d1started == True and app.p1stand == False and app.roundOver == False):
-        if (key == 'd'):
-            if (app.p1Started == False):
-                drawCard_p1()
-                drawHand_p1()
-                calcP1hand()
-                app.p1Started = True
-            drawCard_p1()
-            drawHand_p1()
-            calcP1hand()
-            gameOver()
+    # Compound IF statement asking if app.d1started is True and if app.p1stand is False and if app.roundOver is False - basically run this block if player 1 has started, but has not stood.
+		# Check if 'd' is pressed...
+            # IF app.app.p1Started is False (meaning player one has not started):
+                # Call the 3 functions that draw p1's card, draw p1's hand, and calculate P1's hand
+                # Set app.p1Started to True
+	        #Call the 4 functions from IF 'd's is pressed in the Blackjack_pt1.
         if (key == 's'):
-            # Rect (0,300,400,100,fill='red')
-            # Label ("Time for the dealer...to be continued", 200,350,size=20)
             app.p1stand = True
-            # app.stop()
             app.intructions.value = "Press 'space' for dealer to go!"
-    
-    # added app.rounderOver conditional.
-    if (app.p1stand == True and app.roundOver == False):
-        if (key == 'space'):
-            drawCard_dealer()
-            drawHand_d1()
-            calcD1hand()
-            gameOver()
-        # app.intructions.value = "Press 'space' for dealer to go!"
-    # new for starting new round.
-    if (app.roundOver == True and key == 'enter'):
-        roundReset ()
+	# Check if app.p1stand is True.  Now also check if app.roundOver is False!
+		# Get key input for Dealer to draw their card.  Ie, check if input key is 'space'.
+            # Call 4 functions: 1) Draw card for dealer, draw hand for dealer, Calculation dealer hand, and game over.
+    # Check if both app.roundOver is True & and key 'enter' has been pressed.
+		# Call roundReset function if so
 
 # new function to reset for a new round.
 def roundReset ():
-    print ('new game')
-    app.currentp1hand.clear()
-    app.currentd1hand.clear()
-    app.p1handValue.value = 0
-    app.d1handValue.value = 0
-    app.player1hand = []
-    app.dealer1hand = []
-    app.intructions.value = "Press anywhere where on the Canvas for Player 1 to bet!"
-    app.p1cardValue.value = "No Card!"
-    app.p1cardSuit.value = "No Card!"
-    app.d1cardValue.value = "No Card!"
-    app.d1cardSuit.value = "No Card!"
-    p1display.height = 75
-    d1display.height = 75
-    roundMessage.clear()
-    app.d1started = False
-    app.p1stand = False
-    app.p1Started = False
-    app.p1betPlaced = False
-    app.roundOver = False
+    # Clear group app.currentp1hand
+    # Clear group app.currentd1hand
+	# Reset app.p1handValue & app.d1handValue.value back to 0
+    # Reset app.player1hand & app.dealer1hand back to being empty Lists.
+	# Reset app.intructions's value instructing to Press anywhere on Canvas for player 1 to bet.
+ 	# Reset app.p1cardValue.value, app.p1cardSuit.value, app.d1cardValue.value, & app.d1cardSuit.value back to "No Card"
+    # Reset p1display & d1display's height back to 75
+	# Clear roundMessage
+	# Set to False: app.d1started, app.p1stand, app.p1Started, app.p1betPlaced, app.roundOver
 
+# Or use code from Blackjack_pt2
 def drawCard_p1():
-    newVal = (randrange (0,len(app.values)))
-    newSuit = (randrange (0,len(app.suits)))
-    app.p1cardValue.value = app.values [newVal]
-    app.p1cardSuit.value = app.suits [newSuit]
+    #new newVal & newSuit: Value should be a RANDOM value of the "app.values" list & "app.suits" list.  Hint: You'll be starting at index 0, and going to the LENgth of the List.
+	newVal = ...
+    newSuit = ...
+    # Set app.cardValue equal to the newVal index you got from above.  For example: If newSuit returns [2], then app.cardSuit.value would be equal to 'Diamonds'
+    app.cardValue.value = ...
+    app.cardSuit.value = ...
+	# Following line adds both the value & suit the app.player1hand
     app.player1hand.append([app.values [newVal],app.suits [newSuit]])
     
+	# Or use code from Blackjack_pt2
 def drawCard_dealer():
-    newVal = (randrange (0,len(app.values)))
-    newSuit = (randrange (0,len(app.suits)))
-    app.d1cardValue.value = app.values [newVal]
-    app.d1cardSuit.value = app.suits [newSuit]
+    #new newVal & newSuit: Value should be a RANDOM value of the "app.values" list & "app.suits" list.  Hint: You'll be starting at index 0, and going to the LENgth of the List.
+    newVal = ...
+    newSuit = ...
+    # Set values equal to the INDEX of ones you got from above - just like in def drawCard_p1():
+    app.d1cardValue.value = ...
+    app.d1cardSuit.value = ...
     app.dealer1hand.append([app.values [newVal],app.suits [newSuit]])
 
+	# Or use code from Blackjack_pt2
 def drawHand_p1 ():
-    # print (app.player1hand)
-    app.currentp1hand.clear()
-    for i in range (len(app.player1hand)):
-        app.currentp1hand.add(Label (app.player1hand[i],75,175 + (i * 25)))
+    # print (app.player1hand)   #Line is usefor for debugging what is going on!
+    # Clear app.currentp1hand. (basically resetting the display of current hand display
+	
+    # Create a for loop, using the length of app.player1hand as our range.
+	for ...
+        # ADD Label (app.player1hand[i],75,175 + (i * 25) to app.currentp1hand.
+		# Try messing around with the values to see what happens.
+		
+		#Update p1display's height.  Multiply 25 * length of app.player1and, and add 50.  Again, mess aroung with values.
         p1display.height=(len(app.player1hand) * 25) + 50
-        
+
+# Or use code from Blackjack_pt2
 def drawHand_d1 ():
+    # Clear app.currentd1hand
     app.currentd1hand.clear()
-    for i in range (len(app.dealer1hand)):
-        app.currentd1hand.add(Label (app.dealer1hand[i],275,175 + (i * 25)))
-        d1display.height=(len(app.dealer1hand) * 25) + 50
+	# Create a for loop, using the length of app.dealer1hand as our range.
+        # ADD Label (app.dealer1hand[i],275,175 + (i * 25) to app.currentd1hand
+		#Update d1display's height.  Refer to def drawHand_p1 (): on an idea on how to do so!
+        d1display.height= ...
 
+# Or use code from Blackjack_pt2
 def calcP1hand():
-    if (app.p1cardValue.value.isdigit() == True):
-        # print ("digit!")
-        app.p1handValue.value += int(app.p1cardValue.value)
-    elif (app.p1cardValue.value != 'Ace'):
-        app.p1handValue.value += 10
-    else:
-        app.p1handValue.value += 11
-        # one = Label ('Ace = 1', 50,300)
-        # elevel = Label ('Ace = 11', 200,300)
-        # while (one.hits)
-        
+    # Use app.p1cardValue.value to Add the value of the card to app.p1handValue.  If it's 2-10, just add the number (hint: these are the only digits, so check for that).
+	# If it's J-K, add 10.
+	# If it's an Ace, add 11.
+
+# Calculate total of Dealer's hand.	
 def calcD1hand():
-    if (app.d1cardValue.value.isdigit() == True):
-        # print ("digit!")
-        app.d1handValue.value += int(app.d1cardValue.value)
-    elif (app.d1cardValue.value != 'Ace'):
-        app.d1handValue.value += 10
-    else:
-        app.d1handValue.value += 11
-        # one = Label ('Ace = 1', 50,300)
-        # elevel = Label ('Ace = 11', 200,300)
-        # while (one.hits)
+    # Use app.d1cardValue.value to Add the value of the card to d1handValue.value.  If it's 2-10, just add the number (hint: these are the only digits, so check for that).
+	# If it's J-K, add 10.
+	# If it's an Ace, add 11.
 
 
-# change your game over shapes (rectangles & Labels) to be part of "roundMessage" Group.
+# ****** change your game over shapes (rectangles & Labels) to be part of "roundMessage" Group.  They will get removed in def roundReset ()
 def gameOver():
     if (app.p1handValue.value > 21):
         app.p1money.value -= app.p1bet.value
