@@ -159,7 +159,6 @@ def calcD1hand():
 # ****** change your game over shapes (rectangles & Labels) to be part of "roundMessage" Group.  They will get removed in def roundReset ()
 def gameOver():
 	# IF the score of player 1's hand value > 21? 
-    if (app.p1handValue.value > 21):
 		# update app.p1money by subtracting Player 1's bet.
 		# Add your Rectangle to  roundMessage
 		# Add Message telling you lost.
@@ -178,3 +177,7 @@ def gameOver():
 		# 1) update app.p1money by adding or subtracting Player 1's bet, or doing nothing if a tie.
 		# 2) Add any shapes or labels to roundMessage
 		# 3) Set app.roundOver to True
+	
+	# IF player 1's total pool of money gets to <= 0...
+		# Display messages indicating as much.  
+		# Stop the app.
