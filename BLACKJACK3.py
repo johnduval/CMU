@@ -158,48 +158,24 @@ def calcD1hand():
 
 # ****** change your game over shapes (rectangles & Labels) to be part of "roundMessage" Group.  They will get removed in def roundReset ()
 def gameOver():
+	# IF the score of player 1's hand value > 21? 
     if (app.p1handValue.value > 21):
-        app.p1money.value -= app.p1bet.value
-        roundMessage.add (Rect (0,300,400,100,fill='red'))
-        roundMessage.add (Label ("YOU DREW "+ str (app.p1handValue.value)+". YOU LOSE!", 200,325,size=25))
-        roundMessage.add (Label ("Press 'enter' to start a new round!", 200,375,size = 25))
-        # roundMessage.add( Circle(200, 200, 20, fill='cyan', border='black'))
-        app.roundOver = True
-        app.roundOver = True
-    
-    if (app.p1stand == True):
-        if (app.d1handValue.value > 21):
-            app.p1money.value += app.p1bet.value
-            roundMessage.add (Rect (0,300,400,100,fill='red'))
-            roundMessage.add (Label ("DEALER DREW "+ str (app.d1handValue.value)+". DEALER BUSTS.  YOU WIN!", 200,325,size=17))
-            roundMessage.add (Label ("Press 'enter' to start a new round!", 200,375,size = 25))
-            app.roundOver = True
-            app.roundOver = True
-            print ("!!!!!")
-            
-        elif (app.d1handValue.value >= 17):
-            if (app.d1handValue.value > app.p1handValue.value):
-                app.p1money.value -= app.p1bet.value
-                roundMessage.add (Rect (0,300,400,100,fill='red'))
-                roundMessage.add (Label ("Dealer Drew "+ str (app.d1handValue.value)+" to player's " + str(app.p1handValue.value) + ". Dealer wins!", 200,325,size=10))
-                roundMessage.add (Label ("Press 'enter' to start a new round!", 200,375,size = 25))    
-                app.roundOver = True
-                app.roundOver = True
-                print ("dealer wins")
-            elif (app.d1handValue.value == app.p1handValue.value):
-                app.p1money.value -= 0
-                roundMessage.add (Rect (0,300,400,100,fill='red'))
-                roundMessage.add (Label ("Dealer Drew "+ str (app.d1handValue.value)+" to player's " + str(app.p1handValue.value) + ". It's a tie!", 200,325,size=10))
-                roundMessage.add (Label ("Press 'enter' to start a new round!", 200,375,size = 25))
-                app.roundOver = True
-                app.roundOver = True
-                print ("TIE")
-            else:
-                roundMessage.add (Rect (0,300,400,100,fill='red'))
-                app.p1money.value += app.p1bet.value
-                roundMessage.add (Label ("Dealer Drew "+ str (app.d1handValue.value)+" to player's " + str(app.p1handValue.value) + ". Player 1 wins!", 200,325,size=10))
-                roundMessage.add (Label ("Press 'enter' to start a new round!", 200,375,size = 25))
-                app.roundOver = True
-                app.roundOver = True
-                print ("player 1 wins")
+		# update app.p1money by subtracting Player 1's bet.
+		# Add your Rectangle to  roundMessage
+		# Add Message telling you lost.
+        # Add message telling player to press 'enter' to start a new round
+		# Set app.roundOver to True
+   	
+	# Check if P1 has stood (hint: Boolean):
+		# use the rules to display who has won!
+		
+		# Has dealer busted?
+		# IF Not...
+        	# Does Dealer beat Player?
+			# Does Player beat Dealer?
+			# Is it a tie??
+		#### Inside your IF's Just like in IF above where IF score of Player 1's hand value > 21:
+		# 1) update app.p1money by adding or subtracting Player 1's bet, or doing nothing if a tie.
+		# 2) Add any shapes or labels to roundMessage
+		# 3) Set app.roundOver to True
             
