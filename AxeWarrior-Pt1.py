@@ -3,7 +3,7 @@
 ### AXE WARRIOR - PART 1  ###
 ###                       ###
 #############################
-
+# BASIC REQUIREMENTS:
 # Create global variables.
 # Modify initializeGame (taken from tic-tac-toe)
 # Create player's starting Hit Points (HP) in initializeGame()
