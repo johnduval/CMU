@@ -45,7 +45,7 @@
 ###                       ###
 #############################
 
-# Randomize enemy Movement
+# Randomize enemy Movement whenever Warrior moves.
 # Warrior has Bounded Motion.
 # Enemy connot go through obstacles (Mountain, Life, or Fire)
 # Enemy can take portals.
@@ -198,13 +198,11 @@ def gameOver():
     
 
 # PART 4 - this is screen that will appear when Warrior & Enemy Battle
-# (happens when their centerX & centerY are equal)
-
 battleScreen = Group(
-    ??????? (your own code here for a battle screen - may be similar to newGameScreen & gameOverScreen)
+    Rect (0,0,400,400-app.movement,fill='grey', opacity = 75),
+    Label ("FIGHT!", 200,50,size=50,fill='yellow',bold=True)
     )
-# make sure battleScreen is not visible to start.
-battleScreen.visible = ...
+battleScreen.visible = False
 
 # Do nothing inside battle() currently.  Coding a Battle will be part 5
 def battle ():
@@ -293,7 +291,7 @@ def moveEnemy (key, enemyCurrentPos):
     # Check to see if app.warriors centerX & centerY values are equal to each other (USE A COMPOUND IF)
     # IF so, set xMove & yMove to 0.
     # This prevents the Enemy from moving if Warrior lands on top of Enemy.
-    if (app.warrior.centerX == app.enemy.centerX and .......):
+    if (app.warrior.centerX == app.enemy.centerX and app.warrior.centerY == app.enemy.centerY):
         print ("ENEMY SHOULD NOT MOVE")
         xMove = ...
         ????
@@ -339,12 +337,9 @@ def onKeyPress(key):
         moveEnemy (key, enemyCurrentPos)
         # Check if app.warrior centerX & centerY is equal to the app.enemy
         # (hint: same logic that applies when checking if enemy xMove & yMove is set to 0)
-        if (????):
-            # Make battleScreen visible
-            battleScreen.visible = ...
-            # Call battle function
-            ???
-            print ("WHOA")  #Troubleshooting code to see if make it into this IF block.
+        if (app.warrior.centerX == app.enemy.centerX and app.warrior.centerY == app.enemy.centerY):
+            battleScreen.visible = True
+            battle()
         else:
             battleScreen.visible = False
         
