@@ -78,22 +78,24 @@ portals = Group ()
 # Store player's hit points.
 app.hitPoints = [ ]
 # Part 5
-# 
-app.battleStarted = False
+# Boolean to see if battle has started - set to False
+app.battleStarted = ...
 
-app.enemyHpMax = 8
+# Enemy's max HP
 
+app.enemyHpMax = ...
 
-# 
-app.warriorAtk = 0
-app.enemyAtk = 0
-app.warriorDef = 0
-app.enemyDef = 0
+# Stats for fight - set to 0 to start.  Will randomize later.
+app.warriorAtk = ...
+app.enemyAtk = ...
+app.warriorDef = ...
+app.enemyDef = ...
 
+# MAX Value for stats from above - will used to randomize later.
 app.warriorAtkMAX = 8
-app.enemyAtkMAX = 4
-app.warriorDefMAX = 5
-app.enemyDefMAX = 3
+app.enemyAtkMAX = ...
+app.warriorDefMAX = ...
+app.enemyDefMAX = ...
 
 app.heartUrl = 'https://pm1.narvii.com/6696/35ce165bcb7637f41c7597fc6761479655aa0c98_hq.jpg'
 app.warriorUrl = 'https://a.wattpad.com/useravatar/Sunpool.256.143085.jpg'
@@ -155,7 +157,7 @@ def drawHearts (hpChange):
         # print ("YAY " + str(len(app.hitPoints)))
         target = lifeSquares.hitTest(app.warrior.centerX, app.warrior.centerY)
         # print (target)
-# Part 5 addition
+# Part 5 addition - prevents error when counting HP durig a battle.
         if (target != None):
             lifeSquares.remove(target)
     print ("Ending HP: " + str (len(app.hitPoints))) 
@@ -236,113 +238,111 @@ def gameOver():
 
 
 # Part 5
-enemeyDeadScreen = Group (
-    Rect(0, 100, 400, 200, fill='blue', opacity=70),
-    Label ("Enemey has 0 HIT POINTS.  YOU WIN  :)",200,200,size=20,fill='green')
-    )
-enemeyDeadScreen.visible = False
+# Create an enemyDead Screen (meaning you won!)
+enemeyDeadScreen = Group ()
+# Set screen to False to start
+enemeyDeadScreen.visible = ...
 
+
+# Creates enemyDead function - call if we kill the enemy.
 def enemyDead ():
-    enemeyDeadScreen.visible = True
-    enemeyDeadScreen.toFront()
-    app.stop()
+    # Make the enemeyDeadScreen visible
+    ???
+    # Bring enemeyDeadScreen to the front
+    ???
+    # Stop the app
+    ???
         
     
     
     
-    
+# Part 5
+# Fill in Labels! (including the Presss..... to attack)
 battleScreen = Group(
     Rect (0,0,400,400-app.movement,fill='grey', opacity = 75),
-    Label ("FIGHT!", 200,50,size=50,fill='yellow',bold=True),
-    Label("Warrior Stats", 100,100,size=25),
-    Label("Enemy Stats", 300,100,size = 25),
-    Label("Press 't' to Attack!",200,215,fill='blue',size=35)
+    Label (???, 200,50,size=50,fill='yellow',bold=True),
+    Label(???, 100,100,size=25),
+    Label(???, 300,100,size = 25),
+    Label("Press ............. to Attack!",200,215,fill='blue',size=35)
     )
-    
-battleScreenData = Group ()
-battleScreen.visible = False
-battleScreenData.visible = False
 
-
-
-# app.enemyHp = 0
-# app.battleStarted = False
-# app.warriorAtk = 0
-# app.enemyAtk = 0
-# app.warriorDef = 0
-# app.enemyDef = 0
+# Create an EMPTY battleScreenData Group
+battleScreenData = ...
+# Set battleScreen to not be visibsle
+???
+# Set battleScreenData to not be visibsle
+???
 
 
 # Part 5
+# Create your battle function - be sure to include they key parameter
 def battle (key):
-    print ("----------")
+    # Set player HP equal to the length of app.hitPoints.  To display current hp.
     playerHp = len (app.hitPoints)
-    if (app.battleStarted == False):
-        app.enemyHp= randrange (2,app.enemyHpMax)
+    # Check IF app.battleStarted is False
+    if (???):
+        # Set to a random range from 1 to MAX value
+        app.enemyHp= randrange (1,app.enemyHpMax)
+        # Set to a random range from 0 to MAX value
         app.warriorAtk = randrange (0,app.warriorAtkMAX)
-        app.warriorDef = randrange(0,app.warriorDefMAX)
-        app.enemyAtk = randrange(0,app.enemyAtkMAX)
-        app.enemyDef = randrange(0,app.enemyDefMAX)
+        # Set to a random range from 0 to MAX value
+        app.warriorDef = randrange(...)
+        # Set to a random range from 0 to MAX value
+        app.enemyAtk = ...
+        # Set to a random range from 0 to MAX value
+        app.enemyDef = ...
+        # Set app.battleStarted to True
         app.battleStarted = True
+    # Back outside IF statement.
+    # Clear battleScreenData
     battleScreenData.clear()
-    warriorHpLabel = Label(playerHp,130,125,size=20, fill = 'red')
+    # warriorHpLabel's value the player's current HP for the value (hint - look at first line in this function)
+    warriorHpLabel = Label(...,130,125,size=20, fill = 'red')
+    # Add Following Label to Warrior info:
     battleScreenData.add (warriorHpLabel)
     battleScreenData.add (Label("HP: ",100,125,size=20, fill = 'red'))
-    battleScreenData.add (Label("Attack: " + str (app.warriorAtk),100,150,size=20,fill='red'))
-    battleScreenData.add (Label("Defense: " + str (app.warriorDef),100,175,size=20,fill='red'))
+    # Finish next two lines
+    battleScreenData.add (Label("Attack: " + str (app.warriorAtk),...)
+    battleScreenData.add (Label.........)
+    
     
     enemeyHpLabel = Label(app.enemyHp,330,125,size=20,fill = 'red')
+    # Add Following Label to Enemy info:
     battleScreenData.add (enemeyHpLabel)
     battleScreenData.add (Label("HP: ",300,125,size=20, fill = 'red'))
-    battleScreenData.add (Label("Attack: " + str (app.enemyAtk),300,150,size=20,fill='red'))
-    battleScreenData.add (Label("Defense: " + str (app.enemyDef),300,175,size=20,fill='red'))
-    print (app.warriorAtk)
-    print (app.warriorDef)
-    print (app.enemyAtk)
-    print (app.enemyDef)
-        
-        # wa = randrange (0,app.warriorAtk)
-        # wd = randrange(0,app.warriorDef)
-        # ea = randrange(0,app.enemyAtk)
-        # ed = randrange(0,app.enemyDef)
-        # battleScreen.add (Label("Axe Warrior Stats", 100,100,size=25))
-        # battleScreen.add (Label("HP: " + str(playerHp),100,125,size=20, fill = 'red'))
-        # battleScreen.add (Label("Attack: " + str (wa),100,150,size=20,fill='red'))
-        # battleScreen.add (Label("Defense: " + str (wd),100,175,size=20,fill='red'))
-        # battleScreen.add (Label("Enemy Stats", 300,100,size = 25))
-        # battleScreen.add (Label("HP: " + str(app.enemyHp),300,125,size=20, fill = 'red'))
-        # battleScreen.add (Label("Attack: " + str (ea),300,150,size=20,fill='red'))
-        # battleScreen.add (Label("Defense: " + str (ed),300,175,size=20,fill='red'))
-        # battleScreen.add ()
-        
-    
-    
-    if (key == 't'):
-        print ()
-        battleScreen.add (Label("You attacked!",200,245,fill='purple',size=35))
-        
-        if (app.enemyAtk > app.warriorDef):
-            warriorDelta = app.warriorDef - app.enemyAtk
+    # Finish next 2 lines...
+    battleScreenData.add (Label("Attack: " + str (app.enemyAtk),....))
+    battleScreenData.add (Label.......)
+    # Debugging Lines...
+    # print (app.warriorAtk)
+    # print (app.warriorDef)
+    # print (app.enemyAtk)
+    # print (app.enemyDef)
+    # Check if key is equal to some value - this will be the same as the Label from your battleScreen Group
+    if (?????):
+        # Add Label to battleScreen indicating you've attached.
+        ???
+        # Check if app.enemyAtk is greater than app.warriorDef
+        if (???):
+            # Create a new variable calculating the HP loss for warrior.
+            warriorDelta = ...
             print ("warrior change in HP: " + str (warriorDelta))
+            # Call function that calculates Heart Change.
             drawHearts(warriorDelta)
             playerHp = len (app.hitPoints)
             warriorHpLabel.value=playerHp
-            # if (playerHp == 0):
-        if (app.warriorAtk > app.enemyDef):
-            enemyDelta = app.warriorAtk-app.enemyDef
-            print (enemyDelta)
-            app.enemyHp -= enemyDelta
+        # Check if app.warriorAtk is greater than app.enemyDef
+        if (????):
+            # Create a new variable calculating the HP loss for enemy.
+            ??? = ???
+            # Subtract the loss in HP from app.enemyHp (hint: you just calculated this)
+            app.enemyHp -= ...
             enemeyHpLabel.value = app.enemyHp
-            if (app.enemyHp <= 0):
-                enemyDead()
+            # Check if app.enemyHp is less than or equal to 0...
+            if (???):
+                # Call enemyDead function if so...
+                ???
             
-        
-        
-        
-        
-    # print (app.enemyHp)
-
-
 
 # Part 3 - moved into its own def.
 # ALSO now checking for portals!
@@ -381,9 +381,9 @@ def moveWarrior (key, warriorCurrentPos):
     if (app.warrior.centerX > 400 or app.warrior.centerX < 0 or app.warrior.centerY > 400-app.movement or app.warrior.centerY < 0):
         app.warrior.centerX = warriorCurrentPos[0]
         app.warrior.centerY = warriorCurrentPos[1]
-    # Part 5
-    # Moves warrior on top of enemy - Avoids having to move warrios / enemy over and over to troubleshoot
-    # Use for debugging the FightScreen
+# Part 5
+# Moves warrior on top of enemy - Avoids having to move warrios / enemy over and over to troubleshoot
+# Use for debugging the FightScreen
     if (key == 'q'):
         app.warrior.centerX = app.enemy.centerX
         app.warrior.centerY = app.enemy.centerY
@@ -434,7 +434,7 @@ def moveEnemy (key, enemyCurrentPos):
     checkPortalEnemy (key, enemyCurrentPos)
 
     
-
+# Added a couple lines for Part 5 below.
 def onKeyPress(key):
     # Start a new game or restart the game.
     # When space is pressed and the game is not already playing,
@@ -462,9 +462,11 @@ def onKeyPress(key):
         # Part 3 - moved checking Life, Fire, & Mountain Squares to its own function.
         # ALSO adding check for portals now!!!
         if (app.warrior.centerX == app.enemy.centerX and app.warrior.centerY == app.enemy.centerY):
-            battleScreen.visible = True
 # Part 5 added.
-            battleScreenData.visible = True
+            # Set battleScreen visisble to True
+            ???
+            # Set battleScreenData visible to True
+            ???
             # part 5 = added parameter key
             battle(key)
             # Troublehsooting print.
